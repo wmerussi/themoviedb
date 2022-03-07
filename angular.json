@@ -32,6 +32,11 @@
             "styles": [
               "src/styles/index.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles/variables"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

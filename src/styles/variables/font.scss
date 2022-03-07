@@ -1,0 +1,32 @@
+$sizes: (
+  tiny: 11,
+  xsmall: 12,
+  small: 14,
+  base: 16,
+  medium: 32,
+  large: 40,
+  huge: 64,
+);
+
+$line-heights: (
+  tiny: 16,
+  xsmall: 18,
+  small: (
+    thin: 20,
+    tall: 24,
+  ),
+  base: (
+    thin: 24,
+    tall: 28,
+  ),
+  medium: 36,
+  large: 42,
+  huge: 66,
+);
+
+@mixin font($size, $height: '') {
+  $height-map: ($size, $height);
+
+  font-size: #{map-get($sizes, $size)}px;
+  line-height: #{map-get-plus($line-heights, $height-map...)}px;
+}
