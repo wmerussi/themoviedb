@@ -1,0 +1,8 @@
+body {
+  @include font-family(poppins);
+  @include font-weight(normal);
+  @include font-size(base, thin);
+
+  background-color: color(dark, dark);
+  color: color(light, light);
+}

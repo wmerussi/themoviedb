@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500&display=swap");
+
+$families: (
+  bebas: "Bebas Neue, cursive",
+  poppins: "Poppins, sans-serif",
+);
+
+$weights: (
+  thin: 300,
+  normal: 400,
+  medium: 500,
+);
+
 $sizes: (
   tiny: 11,
   xsmall: 12,
@@ -24,7 +37,15 @@ $line-heights: (
   huge: 66,
 );
 
-@mixin font($size, $height: '') {
+@mixin font-family($family) {
+  font-family: #{map-get($families, $family)};
+}
+
+@mixin font-weight($weight) {
+  font-weight: map-get($weights, $weight);
+}
+
+@mixin font-size($size: base, $height: "") {
   $height-map: ($size, $height);
 
   font-size: #{map-get($sizes, $size)}px;
