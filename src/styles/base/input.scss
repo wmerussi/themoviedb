@@ -1,4 +1,6 @@
 input {
+  width: 100%;
+
   &[type="text"] {
     @include font-family(poppins);
     @include font-size(xsmall);

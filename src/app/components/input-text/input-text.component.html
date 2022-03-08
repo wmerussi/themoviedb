@@ -1,0 +1,15 @@
+<div class="input-text">
+  <div
+    *ngIf="icon"
+    class="input-text__icon"
+  >
+    <svg-icon
+      [src]="imageSource"
+    ></svg-icon>
+  </div>
+
+  <input
+    placeholder="Start typing to search..."
+    type="text"
+  >
+</div>

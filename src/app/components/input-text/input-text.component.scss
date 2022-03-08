@@ -1,0 +1,12 @@
+@import "variables";
+
+.input-text {
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    left: space(small);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
