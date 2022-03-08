@@ -1,0 +1,15 @@
+input {
+  &[type="text"] {
+    @include font-family(poppins);
+    @include font-size(xsmall);
+
+    padding: space(small) space(large);
+
+    background-color: color(dark, medium);
+    color: color(dark, lighter);
+
+    @include media(medium) {
+      @include font-size(small, thin);
+    }
+  }
+}

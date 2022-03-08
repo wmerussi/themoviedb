@@ -1,0 +1,17 @@
+.button {
+  @include font-family(poppins);
+
+  background-color: color(primary);
+  color: color(light, light);
+
+  &--primary {
+    @include font-weight(medium);
+    @include font-size(xsmall);
+
+    padding: space(small);
+
+    @include media(medium) {
+      @include font-size(small, thin);
+    }
+  }
+}
