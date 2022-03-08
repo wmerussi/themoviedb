@@ -1,0 +1,63 @@
+.card {
+  display: flex;
+  align-items: flex-start;
+
+  &__title,
+  &__subtitle {
+    display: block;
+  }
+
+  &__info {
+    margin: 0 space(xsmall);
+    padding-top: space(tiny);
+  }
+
+  &__title {
+    @include font-size(xsmall);
+  }
+
+  &__subtitle {
+    @include font-size(tiny);
+
+    color: color(light, dark);
+  }
+
+  img {
+    @include border-radius(round);
+
+    width: 44px;
+    height: 58px;
+    border: 1px solid color(dark, medium);
+  }
+
+  @include media(medium) {
+    flex-direction: column;
+
+    &__info {
+      order: 3;
+      margin: space(small) 0 0;
+      padding-top: 0;
+    }
+
+    &__title {
+      @include font-size(small, thin);
+    }
+
+    &__subtitle {
+      @include font-size(xsmall);
+
+      margin-top: space(xsmall);
+    }
+
+    &__rating {
+      order: 2;
+      margin-top: space(small);
+    }
+
+    img {
+      order: 1;
+      width: 162px;
+      height: 215px;
+    }
+  }
+}

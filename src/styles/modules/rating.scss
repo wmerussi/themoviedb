@@ -1,0 +1,33 @@
+.rating {
+  @include font-size(tiny);
+  @include font-weight(medium);
+  @include border-radius(round);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  background-color: color(dark, medium);
+
+  @include media(medium) {
+    @include font-size(small, thin);
+
+    flex-direction: row;
+
+    width: 68px;
+    height: 28px;
+
+    &__value {
+      margin-left: space(xsmall);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

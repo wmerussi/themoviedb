@@ -1,0 +1,15 @@
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__card {
+    flex: 0 0 25%;
+    margin-bottom: space(base);
+  }
+
+  @include media(medium) {
+    &__card {
+      margin-bottom: space(huge);
+    }
+  }
+}

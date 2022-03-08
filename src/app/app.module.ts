@@ -12,6 +12,10 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { SwitchMenuComponent } from './components/switch-menu/switch-menu.component';
+import { CardComponent } from './components/card/card.component';
+import { RatingComponent } from './components/rating/rating.component';
+import { IconComponent } from './components/icon/icon.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { SwitchMenuComponent } from './components/switch-menu/switch-menu.compon
     SearchComponent,
     InputTextComponent,
     SwitchMenuComponent,
+    CardComponent,
+    RatingComponent,
+    IconComponent,
+    MovieListComponent,
   ],
   imports: [
     AngularSvgIconModule.forRoot(),

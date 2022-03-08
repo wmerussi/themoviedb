@@ -1,0 +1,12 @@
+<div class="movie-list">
+  <div *ngFor="let movie of movies"
+   class="movie-list__card"
+  >
+    <app-card
+      [date]="movie.date"
+      [imageSrc]="movie.imageSrc"
+      [rating]="movie.rating"
+      [title]="movie.title"
+    ></app-card>
+  </div>
+</div>
