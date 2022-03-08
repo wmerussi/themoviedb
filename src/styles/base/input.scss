@@ -14,4 +14,22 @@ input {
       @include font-size(small, thin);
     }
   }
+
+  &[type="radio"] {
+    &:checked,
+    &:not(:checked) {
+      position: absolute;
+      left: -9999px;
+    }
+
+    + label {
+      @include font-size(small, thin);
+      @include border-radius(pill);
+
+      flex-shrink: 0;
+      margin-right: space(small);
+      padding: space(xsmall) space(base);
+      background-color: color(primary);
+    }
+  }
 }

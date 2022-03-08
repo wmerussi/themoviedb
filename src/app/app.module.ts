@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { InputTextComponent } from './components/input-text/input-text.component';
+import { SwitchMenuComponent } from './components/switch-menu/switch-menu.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { InputTextComponent } from './components/input-text/input-text.component
     HomeComponent,
     SearchComponent,
     InputTextComponent,
+    SwitchMenuComponent,
   ],
   imports: [
     AngularSvgIconModule.forRoot(),

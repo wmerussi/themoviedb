@@ -1,0 +1,10 @@
+<div class="switch-menu">
+  <ng-container *ngFor="let item of items">
+    <input
+      [id]="item.id"
+      name="switch-menu"
+      type="radio"
+    >
+    <label [for]="item.id">{{ item.name }}</label>
+  </ng-container>
+</div>

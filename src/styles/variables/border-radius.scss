@@ -1,0 +1,8 @@
+$border-corners: (
+  round: 5,
+  pill: 24,
+);
+
+@mixin border-radius($type) {
+  border-radius: #{map-get($border-corners, $type)}px;
+}
