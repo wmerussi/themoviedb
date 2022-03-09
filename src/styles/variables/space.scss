@@ -6,8 +6,10 @@ $spaces: (
   medium: 24,
   large: 32,
   xlarge: 40,
-  huge: 48,
-  xhuge: 56,
+  xxlarge: 48,
+  huge: 56,
+  xhuge: 71,
+  xxhuge: 80,
 );
 
 @function space($space) {

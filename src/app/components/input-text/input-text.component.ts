@@ -7,5 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class InputTextComponent {
   imageSource: string = '';
+  @Input() fieldClass: string = '';
   @Input() icon: string = '';
 }

@@ -1,20 +1,26 @@
 <div class="home">
-  <h1 class="title">
-    <span class="title--line">Find movies & more.</span>
-    <span class="title--line">Explore now.</span>
-  </h1>
+  <div class="container">
+    <div class="row">
+      <h1 class="heading heading__title col">
+        <span class="heading--line">Find movies & more.</span>
+        <span class="heading--line">Explore now.</span>
+      </h1>
 
-  <div class="search-input">
-    <app-search></app-search>
+      <div class="home__search col col-md-9 col-lg-7">
+        <app-search></app-search>
+      </div>
+
+      <h2 class="home__subtitle heading heading__subtitle col">Explore Movies</h2>
+    </div>
   </div>
 
-  <h2 class="subtitle">Explore Movies</h2>
+  <div class="home__switch-menu container">
+    <app-switch-menu
+      [items]="switchMenuItems"
+    ></app-switch-menu>
+  </div>
 
-  <app-switch-menu
-    [items]="switchMenuItems"
-  ></app-switch-menu>
-
-  <div class="home__movies">
+  <div class="home__movies container">
     <app-movie-list></app-movie-list>
   </div>
 </div>

@@ -1,0 +1,18 @@
+.search {
+  display: flex;
+  max-width: 746px;
+
+  &__input {
+    flex-grow: 1;
+
+    &-field {
+      border-top-left-radius: border-radius(round);
+      border-bottom-left-radius: border-radius(round);
+    }
+  }
+
+  &__button {
+    border-top-right-radius: border-radius(round);
+    border-bottom-right-radius: border-radius(round);
+  }
+}

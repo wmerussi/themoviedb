@@ -1,0 +1,58 @@
+.home {
+  padding: {
+    top: space(xlarge);
+    bottom: space(xlarge);
+  };
+
+  &__search {
+    margin-top: space(medium);
+  }
+
+  &__subtitle {
+    margin-top: space(huge);
+  }
+
+  &__switch-menu {
+    margin-top: space(medium);
+
+    @include media(medium, max) {
+      &,
+      .row,
+      .col {
+        margin: {
+          top: space(medium);
+          right: 0;
+          left: 0;
+        };
+
+        padding: {
+          right: 0;
+          left: 0;
+        };
+
+        width: 100%;
+      }
+    }
+  }
+
+  &__movies {
+    margin-top: space(xlarge);
+  }
+
+  @include media(medium) {
+    &__switch-menu {
+      margin-top: space(large);
+    }
+  }
+
+  @include media(large) {
+    padding: {
+      top: space(xxhuge);
+      bottom: space(xxhuge);
+    };
+
+    &__subtitle {
+      margin-top: space(xhuge);
+    }
+  }
+}

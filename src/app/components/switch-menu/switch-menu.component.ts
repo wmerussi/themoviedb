@@ -7,11 +7,20 @@ import { switchMenuItem } from './switch-menu-item.interface';
   styleUrls: ['./switch-menu.component.scss'],
 })
 export class SwitchMenuComponent implements OnInit {
+  active = 'most-popular';
   @Input() items: switchMenuItem[] = [];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  setActive(itemId: string) {
+    this.active = itemId;
+  }
+
+  isActive(itemId: string): boolean {
+    return itemId === this.active;
+  }
 }

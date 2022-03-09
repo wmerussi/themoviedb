@@ -1,0 +1,14 @@
+.switch-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: scroll;
+
+
+  label:not(:last-child) {
+    margin-right: space(small);
+  }
+
+  @include media(medium, max) {
+    padding: 0 space(base);
+  }
+}

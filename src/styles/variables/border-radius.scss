@@ -3,6 +3,10 @@ $border-corners: (
   pill: 24,
 );
 
+@function border-radius($type) {
+  @return #{map-get($border-corners, $type)}px;
+}
+
 @mixin border-radius($type) {
-  border-radius: #{map-get($border-corners, $type)}px;
+  border-radius: border-radius($type);
 }

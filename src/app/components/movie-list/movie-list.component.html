@@ -1,6 +1,7 @@
-<div class="movie-list">
-  <div *ngFor="let movie of movies"
-   class="movie-list__card"
+<div class="movie-list row">
+  <div
+    *ngFor="let movie of movies"
+    class="movie-list__card col col-md-3"
   >
     <app-card
       [date]="movie.date"

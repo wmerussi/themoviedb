@@ -1,0 +1,25 @@
+.heading {
+  @include font-family(bebas);
+
+  &__title {
+    @include font-size(large);
+  }
+
+  &__subtitle {
+    @include font-size(medium);
+  }
+
+  &--line {
+    display: block;
+  }
+
+  @include media(medium) {
+    &__title {
+      @include font-size(huge);
+    }
+
+    &__subtitle {
+      @include font-size(large);
+    }
+  }
+}

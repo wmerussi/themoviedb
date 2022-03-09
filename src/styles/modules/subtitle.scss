@@ -1,8 +1,0 @@
-.subtitle {
-  @include font-family(bebas);
-  @include font-size(medium);
-
-  @include media(medium) {
-    @include font-size(large);
-  }
-}

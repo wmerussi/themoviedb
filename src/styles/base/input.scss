@@ -5,7 +5,7 @@ input {
     @include font-family(poppins);
     @include font-size(xsmall);
 
-    padding: space(small) space(large);
+    padding: space(small) space(xlarge);
 
     background-color: color(dark, medium);
     color: color(dark, lighter);
@@ -27,9 +27,12 @@ input {
       @include border-radius(pill);
 
       flex-shrink: 0;
-      margin-right: space(small);
       padding: space(xsmall) space(base);
-      background-color: color(primary);
+      background-color: color(dark, medium);
+
+      &.active {
+        background-color: color(primary);
+      }
     }
   }
 }
