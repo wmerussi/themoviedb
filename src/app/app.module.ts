@@ -17,6 +17,7 @@ import { CardComponent } from './components/card/card.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { IconComponent } from './components/icon/icon.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { DebounceKeyupDirective } from './directives/debounce-keyup.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
     RatingComponent,
     IconComponent,
     MovieListComponent,
+    DebounceKeyupDirective,
   ],
   imports: [
     AngularSvgIconModule.forRoot(),

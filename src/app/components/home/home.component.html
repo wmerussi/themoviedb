@@ -1,29 +1,48 @@
 <div class="home">
   <div class="container">
     <div class="row">
-      <h1 class="heading heading__title col">
+      <h1
+        *ngIf="!isSearchPage"
+        class="home__title heading heading__title col"
+      >
         <span class="heading--line">Find movies & more.</span>
         <span class="heading--line">Explore now.</span>
       </h1>
 
-      <div class="home__search col col-md-9 col-lg-7">
+      <div
+        [class.smaller-margin]="isSearchPage"
+        class="home__search col col-md-9 col-lg-7"
+      >
         <app-search-input
-          (searchInputValueChange)="search($event)"
+          [hideButton]="isSearchPage"
+          (searchInputValueChange)="onSearchClick($event)"
         ></app-search-input>
       </div>
-
-      <h2 class="home__subtitle heading heading__subtitle col">Explore Movies</h2>
     </div>
   </div>
 
-  <div class="home__switch-menu container">
+  <hr class="col" *ngIf="isSearchPage">
+
+  <div
+    [class.bigger-margin]="isSearchPage"
+    class="container"
+  >
+    <div class="row">
+      <h2 class="home__subtitle heading heading__subtitle col">{{ subtitle }}</h2>
+    </div>
+  </div>
+
+  <div
+    *ngIf="!isSearchPage"
+    class="home__switch-menu container"
+  >
     <app-switch-menu
       [items]="switchMenuItems"
       (menuChange)="onMenuChange($event)"
     ></app-switch-menu>
   </div>
 
-  <div class="home__movies container">
+  <div class="container">
     <app-movie-list
       [movieList]="movieList"
     ></app-movie-list>

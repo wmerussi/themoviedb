@@ -4,23 +4,34 @@
     bottom: space(xlarge);
   };
 
+  &__title {
+    margin-bottom: space(medium);
+  }
+
   &__search {
-    margin-top: space(medium);
+    margin-bottom: space(huge);
+
+    &.smaller-margin {
+      margin-bottom: space(large);
+    }
   }
 
   &__subtitle {
-    margin-top: space(huge);
+    margin-bottom: space(medium);
+
+    &.bigger-margin {
+      margin-bottom: space(large);
+    }
   }
 
   &__switch-menu {
-    margin-top: space(medium);
+    margin-bottom: space(xlarge);
 
     @include media(medium, max) {
       &,
       .row,
       .col {
         margin: {
-          top: space(medium);
           right: 0;
           left: 0;
         };
@@ -35,13 +46,16 @@
     }
   }
 
-  &__movies {
-    margin-top: space(xlarge);
+  hr {
+    margin-bottom: space(large);
   }
 
   @include media(medium) {
+    &__subtitle {
+      margin-bottom: space(large);
+    }
     &__switch-menu {
-      margin-top: space(large);
+      margin-bottom: space(xxlarge);
     }
   }
 
@@ -51,8 +65,8 @@
       bottom: space(xxhuge);
     };
 
-    &__subtitle {
-      margin-top: space(xhuge);
+    &__search {
+      margin-bottom: space(xhuge);
     }
   }
 }

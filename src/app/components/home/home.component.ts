@@ -5,6 +5,8 @@ import { SearchService } from '../../services/search.service';
 import { SwitchMenuItem } from '../switch-menu/switch-menu-item.interface';
 import { Movie } from '../../interfaces/movie.interface';
 import { kebabToCamelCase } from '../../services/utils';
+import { Observable } from 'rxjs';
+import { QueryResult } from '../../interfaces/query-result.interface';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +21,13 @@ export class HomeComponent implements OnInit {
   ];
 
   movieList: Movie[] = [];
+  isSearchPage: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private searchService: SearchService) { }
+
+  get subtitle(): string {
+    return this.isSearchPage ? 'Search results' : 'Explore Movies';
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -32,6 +39,9 @@ export class HomeComponent implements OnInit {
         case 'top-rated':
           this.initMoviesByType(type);
           return;
+        case 'search':
+          this.onSearchPage(query);
+          break;
       }
     });
   }
@@ -41,13 +51,37 @@ export class HomeComponent implements OnInit {
   }
 
   initMoviesByType(type: string): void {
+    this.resetValues();
+    this.router.navigate([`movie/${type}`]);
+
     // @ts-ignore
-    this.searchService[kebabToCamelCase(type)]().subscribe((result: QueryResult) => {
+    this.subscribeAndFillMovies(this.searchService[kebabToCamelCase(type)]());
+  }
+
+  onSearchPage(searchValue: string): void {
+    this.resetValues();
+
+    if (!searchValue) {
+      this.router.navigate(['movie/most-popular', {query: searchValue}]);
+      return;
+    }
+
+    this.isSearchPage = true;
+    this.subscribeAndFillMovies(this.searchService.search(searchValue));
+  }
+
+  onSearchClick(searchValue: string): void {
+    this.router.navigate(['movie/search', {query: searchValue}]);
+  }
+
+  subscribeAndFillMovies(observable: Observable<QueryResult>): void {
+    observable.subscribe((result: QueryResult) => {
       this.movieList = result.results;
     });
   }
 
-  search(searchValue: string): void {
-    this.router.navigate(['movie/search', {query: searchValue}]);
+  private resetValues(): void {
+    this.isSearchPage = false;
+    this.movieList = [];
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-input',
@@ -7,12 +7,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SearchInputComponent {
   searchValue: string = '';
+
+  @Input() hideButton: boolean = false;
   @Output() searchInputValueChange: EventEmitter<string> = new EventEmitter<string>();
 
   onKeyup(event: KeyboardEvent): void {
     this.searchValue = (<HTMLInputElement>event.target).value;
 
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || this.hideButton) {
       this.emitSearchValue();
     }
   }

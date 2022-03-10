@@ -7,8 +7,9 @@
   </div>
 
   <input
+    debounceKeyup
     [class]="fieldClass"
-    (keyup)="keyup($event)"
+    (debounceKeyup)="keyup($event)"
     placeholder="Start typing to search..."
     type="text"
   >

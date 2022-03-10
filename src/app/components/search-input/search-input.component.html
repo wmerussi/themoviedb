@@ -8,9 +8,10 @@
   </div>
 
   <button
+    *ngIf="!hideButton"
+    (click)="emitSearchValue()"
     class="search__button button button--primary"
     type="button"
-    (click)="emitSearchValue()"
   >Search
   </button>
 </div>
