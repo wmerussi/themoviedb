@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { SearchService } from '../../services/search.service';
 import { SwitchMenuItem } from '../switch-menu/switch-menu-item.interface';
 import { Movie } from '../../interfaces/movie.interface';
-import { kebabToCamelCase } from '../../services/utils';
-import { Observable } from 'rxjs';
 import { QueryResult } from '../../interfaces/query-result.interface';
+import { SearchParams } from '../../interfaces/search-params.interface';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   switchMenuItems: SwitchMenuItem[] = [
     {id: 'most-popular', name: 'Most Popular'},
     {id: 'now-playing', name: 'Now Playing'},
@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
   activeSwitchItem: string = 'most-popular';
   movieList: Movie[] = [];
   isSearchPage: boolean = false;
+  lastParams: SearchParams = {type: '', query: ''};
+  subscriptions: Subscription = new Subscription();
 
   constructor(private route: ActivatedRoute, private router: Router, private searchService: SearchService) { }
 
@@ -34,60 +36,64 @@ export class HomeComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       const {type, query} = params;
 
-      if (!!type && !this.switchMenuItems.find((item: SwitchMenuItem) => item.id === type)) {
+      if (type !== 'search') {
+        this.resetValues();
+      }
+
+      this.lastParams = {type, query};
+
+      if (
+        !!type
+        && type !== 'search'
+        && !this.switchMenuItems.find((item: SwitchMenuItem) => item.id === type)
+      ) {
         this.router.navigate(['not-found']);
         return;
       }
 
-      switch (type) {
-        case 'most-popular':
-        case 'now-playing':
-        case 'top-rated':
-          this.activeSwitchItem = type;
-          this.initMoviesByType(type);
-          return;
-        case 'search':
-          this.onSearchPage(query);
-          break;
+      if (type === 'search') {
+        this.isSearchPage = true;
+      } else {
+        this.activeSwitchItem = type;
       }
+
+      this.fillMovies();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   onMenuChange(menuItem: SwitchMenuItem): void {
-    this.initMoviesByType(menuItem.id);
+    this.resetValues();
+
+    this.lastParams = {type: menuItem.id, query: ''};
+    this.fillMovies();
   }
 
-  initMoviesByType(type: string): void {
-    this.resetValues();
-    this.router.navigate([`movie/${type}`]);
+  fillMovies(): void {
+    const {type, query} = this.lastParams;
 
-    // @ts-ignore
-    this.subscribeAndFillMovies(this.searchService[kebabToCamelCase(type)]());
-  }
-
-  onSearchPage(searchValue: string): void {
-    this.resetValues();
-    this.isSearchPage = true;
-
-    if (!searchValue) {
-      this.subscribeAndFillMovies(this.searchService.searchAll());
-      return;
-    }
-
-    this.subscribeAndFillMovies(this.searchService.search(searchValue));
+    this.subscriptions.add(
+      this.searchService.getNextPage(type, query).subscribe((result: QueryResult) => {
+        this.movieList = this.movieList.concat(result.results);
+      }),
+    );
   }
 
   onSearchClick(searchValue: string): void {
-    this.router.navigate(['movie/search', {query: searchValue}]);
+    this.resetValues();
+    this.router.navigate(['movie/search', {query: searchValue || ''}]);
   }
 
-  subscribeAndFillMovies(observable: Observable<QueryResult>): void {
-    observable.subscribe((result: QueryResult) => {
-      this.movieList = result.results;
-    });
+  atEndOfThePage(_this: any): void {
+    _this.fillMovies();
   }
 
   private resetValues(): void {
+    this.searchService.resetCurrentPage();
+    this.lastParams = {type: '', query: ''};
     this.isSearchPage = false;
     this.movieList = [];
   }

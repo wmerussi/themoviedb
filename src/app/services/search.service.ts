@@ -1,29 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { QueryResult } from '../interfaces/query-result.interface';
-import { getIsoDate } from './utils';
+import { getIsoDate, kebabToCamelCase } from './utils';
 
 @Injectable({providedIn: 'root'})
 export class SearchService {
+  private currentPage = 1;
   private url = 'https://api.themoviedb.org/3';
 
   constructor(private http: HttpClient) { }
 
   search(value: string): Observable<QueryResult> {
-    return this.http.get<QueryResult>(`${this.url}/search/movie?query=${value}`);
+    const params = new HttpParams()
+      .set('query', value)
+      .set('page', this.currentPage);
+
+    this.currentPage++;
+    return this.http.get<QueryResult>(`${this.url}/search/movie`, {params});
   }
 
   searchAll(): Observable<QueryResult> {
-    return this.http.get<QueryResult>(`${this.url}/discover/movie`);
+    const params = new HttpParams().set('page', this.currentPage);
+
+    this.currentPage++;
+    return this.http.get<QueryResult>(`${this.url}/discover/movie`, {params});
   }
 
-  mostPopular(type: string): Observable<QueryResult> {
-    return this.http.get<QueryResult>(`${this.url}/discover/movie?sort_by=popularity.desc`);
+  mostPopular(): Observable<QueryResult> {
+    const params = new HttpParams()
+      .set('sort_by', 'popularity.desc')
+      .set('page', this.currentPage);
+
+    this.currentPage++;
+    return this.http.get<QueryResult>(`${this.url}/discover/movie`, {params});
   }
 
-  nowPlaying(type: string): Observable<QueryResult> {
+  nowPlaying(): Observable<QueryResult> {
     const now = new Date();
     const lastMonthDate = new Date();
     lastMonthDate.setMonth(now.getMonth() - 1);
@@ -31,12 +45,39 @@ export class SearchService {
     const today = getIsoDate(now);
     const lastMonth = getIsoDate(lastMonthDate);
 
-    return this.http.get<QueryResult>(
-      `${this.url}/discover/movie?primary_release_date.gte=${lastMonth}&primary_release_date.lte=${today}`);
+    const params = new HttpParams()
+      .set('primary_release_date.gte', lastMonth)
+      .set('primary_release_date.lte', today)
+      .set('page', this.currentPage);
+
+    this.currentPage++;
+    return this.http.get<QueryResult>(`${this.url}/discover/movie`, {params});
   }
 
-  topRated(type: string): Observable<QueryResult> {
-    return this.http.get<QueryResult>(
-      `${this.url}/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc`);
+  topRated(): Observable<QueryResult> {
+    const params = new HttpParams()
+      .set('certification_country', 'US')
+      .set('certification', 'R')
+      .set('sort_by', 'vote_average.desc')
+      .set('page', this.currentPage);
+
+    this.currentPage++;
+    return this.http.get<QueryResult>(`${this.url}/discover/movie/`, {params});
+  }
+
+  getNextPage(type: string, value: string = ''): Observable<QueryResult> {
+    switch (type) {
+      case 'most-popular':
+      case 'now-playing':
+      case 'top-rated':
+        // @ts-ignore
+        return this[kebabToCamelCase(type)]();
+      default:
+        return value ? this.search(value) : this.searchAll();
+    }
+  }
+
+  resetCurrentPage(): void {
+    this.currentPage = 1;
   }
 }
