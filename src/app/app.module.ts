@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from 'ng-lazyload-image';
 
 import { AppRoutingModule } from './app-routing.module';
 import { InterceptorModule } from './interceptors/interceptor.module';
@@ -40,8 +41,9 @@ import { DebounceKeyupDirective } from './directives/debounce-keyup.directive';
     HttpClientModule,
     InterceptorModule,
     ReactiveFormsModule,
+    LazyLoadImageModule,
   ],
-  providers: [],
+  providers: [{provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
