@@ -22,6 +22,7 @@ import { DebounceKeyupDirective } from './directives/debounce-keyup.directive';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AtEndOfThePageDirective } from './directives/at-end-of-page.directive';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { CustomDatePipe } from './components/pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
     NotFoundComponent,
     AtEndOfThePageDirective,
     MovieDetailsComponent,
+    CustomDatePipe,
   ],
   imports: [
     AngularSvgIconModule.forRoot(),

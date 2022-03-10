@@ -61,4 +61,11 @@
       height: 215px;
     }
   }
+
+  @include media(large) {
+    img {
+      width: 200px;
+      height: 266px;
+    }
+  }
 }
