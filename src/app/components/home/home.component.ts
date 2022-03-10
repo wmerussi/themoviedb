@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         && type !== 'search'
         && !this.switchMenuItems.find((item: SwitchMenuItem) => item.id === type)
       ) {
-        this.router.navigate(['not-found']);
+        this.router.navigate(['page-not-found']);
         return;
       }
 

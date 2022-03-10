@@ -20,6 +20,10 @@
   &__date,
   &__genres {
     color: color(light, dark);
+
+    @include media(medium, max) {
+      display: block;
+    }
   }
 
   &__subtitle {
