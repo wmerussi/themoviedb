@@ -48,6 +48,20 @@
       [movieList]="movieList"
       (cardClick)="getMovieDetails($event)"
     ></app-movie-list>
+
+    <div class="row">
+      <span
+        *ngIf="noResults()"
+        class="home__no-results col"
+      >There were no results, try again!</span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="isLoading"
+    class="home__loading"
+  >
+    <div class="loading"></div>
   </div>
 </div>
 

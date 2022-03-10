@@ -1,7 +1,7 @@
 .home {
   padding: {
     top: space(xlarge);
-    bottom: space(xlarge);
+    bottom: space(huge);
   };
 
   &__title {
@@ -43,6 +43,12 @@
 
         width: 100%;
       }
+    }
+  }
+
+  &__loading {
+    .loading {
+      margin: 0 auto;
     }
   }
 

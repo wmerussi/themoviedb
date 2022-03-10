@@ -7,6 +7,7 @@ import { SwitchMenuItem } from '../switch-menu/switch-menu-item.interface';
 import { Movie } from '../../interfaces/movie.interface';
 import { QueryResult } from '../../interfaces/query-result.interface';
 import { SearchParams } from '../../interfaces/search-params.interface';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isSearchPage: boolean = false;
   lastParams: SearchParams = {type: '', query: ''};
   subscriptions: Subscription = new Subscription();
+  isLoading: boolean = true;
 
   showDetails: boolean = false;
   movieDetails: Movie = <Movie>{};
@@ -77,11 +79,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   fillMovies(): void {
     const {type, query} = this.lastParams;
+    this.isLoading = true;
 
     this.subscriptions.add(
-      this.searchService.getNextPage(type, query).subscribe((result: QueryResult) => {
-        this.movieList = this.movieList.concat(result.results);
-      }),
+      this.searchService.getNextPage(type, query)
+        .pipe(
+          finalize(() => this.isLoading = false),
+        )
+        .subscribe((result: QueryResult) => {
+          this.movieList = this.movieList.concat(result.results);
+        }),
     );
   }
 
@@ -104,6 +111,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.showDetails = false;
+  }
+
+  noResults(): boolean {
+    return !this.isLoading && !this.movieList.length;
   }
 
   private resetValues(): void {

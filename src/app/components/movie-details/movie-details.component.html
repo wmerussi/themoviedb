@@ -16,7 +16,7 @@
         <h2 class="col">{{ details.title }}</h2>
 
         <div class="movie-details__subtitle">
-          <span class="movie-details__date col">{{ details.release_date }}</span>
+          <span class="movie-details__date col">{{ details.release_date | date }}</span>
           <span class="movie-details__genres col">{{ getGenres(details.genres) }}</span>
         </div>
 
