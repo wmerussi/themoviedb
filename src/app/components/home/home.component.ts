@@ -60,13 +60,13 @@ export class HomeComponent implements OnInit {
 
   onSearchPage(searchValue: string): void {
     this.resetValues();
+    this.isSearchPage = true;
 
     if (!searchValue) {
-      this.router.navigate(['movie/most-popular', {query: searchValue}]);
+      this.subscribeAndFillMovies(this.searchService.searchAll());
       return;
     }
 
-    this.isSearchPage = true;
     this.subscribeAndFillMovies(this.searchService.search(searchValue));
   }
 

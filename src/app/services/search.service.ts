@@ -15,6 +15,10 @@ export class SearchService {
     return this.http.get<QueryResult>(`${this.url}/search/movie?query=${value}`);
   }
 
+  searchAll(): Observable<QueryResult> {
+    return this.http.get<QueryResult>(`${this.url}/discover/movie`);
+  }
+
   mostPopular(type: string): Observable<QueryResult> {
     return this.http.get<QueryResult>(`${this.url}/discover/movie?sort_by=popularity.desc`);
   }
