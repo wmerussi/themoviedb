@@ -1,5 +1,9 @@
 <div class="card">
-  <img [src]="imageSrc" alt="Image of the movie's folder">
+  <img
+    [src]="src"
+    (error)="loadAltImage()"
+    alt="Image of the movie's folder"
+  >
 
   <div class="card__info">
     <span class="card__title">{{ title }}</span>

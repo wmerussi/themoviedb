@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { SwitchMenuItem } from '../switch-menu/switch-menu-item.interface';
 import { Movie } from '../../interfaces/movie.interface';
-import { QueryResult } from '../../interfaces/query-result.interface';
+import { kebabToCamelCase } from '../../services/utils';
 
 @Component({
   selector: 'app-home',
@@ -28,14 +28,21 @@ export class HomeComponent implements OnInit {
 
       switch (type) {
         case 'most-popular':
-          this.initMoviesByType('popular');
-          break;
+        case 'now-playing':
+        case 'top-rated':
+          this.initMoviesByType(type);
+          return;
       }
     });
   }
 
+  onMenuChange(menuItem: SwitchMenuItem): void {
+    this.initMoviesByType(menuItem.id);
+  }
+
   initMoviesByType(type: string): void {
-    this.searchService.discover(type).subscribe((result: QueryResult) => {
+    // @ts-ignore
+    this.searchService[kebabToCamelCase(type)]().subscribe((result: QueryResult) => {
       this.movieList = result.results;
     });
   }

@@ -19,6 +19,7 @@
   <div class="home__switch-menu container">
     <app-switch-menu
       [items]="switchMenuItems"
+      (menuChange)="onMenuChange($event)"
     ></app-switch-menu>
   </div>
 
