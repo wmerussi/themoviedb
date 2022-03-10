@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'movie/:type',
     component: HomeComponent,
   },
+  {
+    path: 'not-found',
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({

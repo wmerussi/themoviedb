@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SwitchMenuItem } from './switch-menu-item.interface';
 
 @Component({
@@ -6,15 +6,13 @@ import { SwitchMenuItem } from './switch-menu-item.interface';
   templateUrl: './switch-menu.component.html',
   styleUrls: ['./switch-menu.component.scss'],
 })
-export class SwitchMenuComponent implements OnInit {
+export class SwitchMenuComponent {
   active = 'most-popular';
   @Input() items: SwitchMenuItem[] = [];
   @Output() menuChange: EventEmitter<SwitchMenuItem> = new EventEmitter<SwitchMenuItem>();
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
+  @Input() set activeItem(item: string) {
+    this.active = item;
   }
 
   setActive(item: SwitchMenuItem) {

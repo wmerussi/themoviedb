@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
     {id: 'top-rated', name: 'Top Rated'},
   ];
 
+  activeSwitchItem: string = 'most-popular';
   movieList: Movie[] = [];
   isSearchPage: boolean = false;
 
@@ -33,10 +34,16 @@ export class HomeComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       const {type, query} = params;
 
+      if (!!type && !this.switchMenuItems.find((item: SwitchMenuItem) => item.id === type)) {
+        this.router.navigate(['not-found']);
+        return;
+      }
+
       switch (type) {
         case 'most-popular':
         case 'now-playing':
         case 'top-rated':
+          this.activeSwitchItem = type;
           this.initMoviesByType(type);
           return;
         case 'search':

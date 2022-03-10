@@ -37,6 +37,7 @@
     class="home__switch-menu container"
   >
     <app-switch-menu
+      [activeItem]="activeSwitchItem"
       [items]="switchMenuItems"
       (menuChange)="onMenuChange($event)"
     ></app-switch-menu>
