@@ -1,47 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Movie } from '../../interfaces/movie.interface';
 
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
   styleUrls: ['./movie-list.component.scss'],
 })
-export class MovieListComponent implements OnInit {
-  movies = [
-    {
-      imageSrc: 'https://via.placeholder.com/728x90',
-      title: 'Star Wars: Episode VII - The Force Awakens',
-      date: '24 Nov 2015',
-      rating: 72,
-    },
-    {
-      imageSrc: 'https://via.placeholder.com/728x90',
-      title: 'Star Wars: Episode VII - The Force Awakens',
-      date: '24 Nov 2015',
-      rating: 72,
-    },
-    {
-      imageSrc: 'https://via.placeholder.com/728x90',
-      title: 'Star Wars: Episode VII - The Force Awakens',
-      date: '24 Nov 2015',
-      rating: 72,
-    },
-    {
-      imageSrc: 'https://via.placeholder.com/728x90',
-      title: 'Star Wars: Episode VII - The Force Awakens',
-      date: '24 Nov 2015',
-      rating: 72,
-    },
-    {
-      imageSrc: 'https://via.placeholder.com/728x90',
-      title: 'Star Wars: Episode VII - The Force Awakens',
-      date: '24 Nov 2015',
-      rating: 72,
-    },
-  ];
+export class MovieListComponent {
+  @Input() movieList: Movie[] = [];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  getPosterUrl(posterFileName: string): string {
+    return `https://image.tmdb.org/t/p/w200${posterFileName}`;
   }
 
+  getMovieRating(voteAverage: number): number {
+    return voteAverage * 10;
+  }
 }

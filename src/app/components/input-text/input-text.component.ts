@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input-text',
@@ -6,7 +6,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./input-text.component.scss'],
 })
 export class InputTextComponent {
-  imageSource: string = '';
   @Input() fieldClass: string = '';
   @Input() icon: string = '';
+  @Output() onKeyup: EventEmitter<KeyboardEvent> = new EventEmitter<KeyboardEvent>();
+
+  keyup(event: KeyboardEvent): void {
+    this.onKeyup.emit(event);
+  }
 }

@@ -1,4 +1,4 @@
-<div class="input-text">
+<form class="input-text">
   <div
     *ngIf="icon"
     class="input-text__icon"
@@ -8,7 +8,8 @@
 
   <input
     [class]="fieldClass"
+    (keyup)="keyup($event)"
     placeholder="Start typing to search..."
     type="text"
   >
-</div>
+</form>

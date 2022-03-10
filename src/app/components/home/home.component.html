@@ -7,7 +7,9 @@
       </h1>
 
       <div class="home__search col col-md-9 col-lg-7">
-        <app-search></app-search>
+        <app-search-input
+          (searchInputValueChange)="search($event)"
+        ></app-search-input>
       </div>
 
       <h2 class="home__subtitle heading heading__subtitle col">Explore Movies</h2>
@@ -21,6 +23,8 @@
   </div>
 
   <div class="home__movies container">
-    <app-movie-list></app-movie-list>
+    <app-movie-list
+      [movieList]="movieList"
+    ></app-movie-list>
   </div>
 </div>

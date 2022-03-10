@@ -1,12 +1,12 @@
 <div class="movie-list row">
   <div
-    *ngFor="let movie of movies"
+    *ngFor="let movie of movieList"
     class="movie-list__card col col-md-3"
   >
     <app-card
-      [date]="movie.date"
-      [imageSrc]="movie.imageSrc"
-      [rating]="movie.rating"
+      [date]="movie.release_date"
+      [imageSrc]="getPosterUrl(movie.poster_path)"
+      [rating]="getMovieRating(movie.vote_average)"
       [title]="movie.title"
     ></app-card>
   </div>

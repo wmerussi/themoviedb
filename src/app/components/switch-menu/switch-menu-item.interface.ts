@@ -1,4 +1,4 @@
-export interface switchMenuItem {
+export interface SwitchMenuItem {
   id: string,
   name: string,
 }

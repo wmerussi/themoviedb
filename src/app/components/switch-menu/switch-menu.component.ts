@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { switchMenuItem } from './switch-menu-item.interface';
+import { SwitchMenuItem } from './switch-menu-item.interface';
 
 @Component({
   selector: 'app-switch-menu',
@@ -8,7 +8,7 @@ import { switchMenuItem } from './switch-menu-item.interface';
 })
 export class SwitchMenuComponent implements OnInit {
   active = 'most-popular';
-  @Input() items: switchMenuItem[] = [];
+  @Input() items: SwitchMenuItem[] = [];
 
   constructor() {
   }

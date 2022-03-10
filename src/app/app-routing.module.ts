@@ -4,7 +4,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {
+    path: '',
+    redirectTo: 'movie/most-popular',
+    pathMatch: 'full',
+  },
+  {
+    path: 'movie',
+    redirectTo: 'movie/most-popular',
+    pathMatch: 'full',
+  },
+  {
+    path: 'movie/:type',
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({

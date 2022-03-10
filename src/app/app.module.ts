@@ -10,7 +10,7 @@ import { InterceptorModule } from './interceptors/interceptor.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { SearchComponent } from './components/search/search.component';
+import { SearchInputComponent } from './components/search-input/search-input.component';
 import { InputTextComponent } from './components/input-text/input-text.component';
 import { SwitchMenuComponent } from './components/switch-menu/switch-menu.component';
 import { CardComponent } from './components/card/card.component';
@@ -22,7 +22,7 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
   declarations: [
     AppComponent,
     HomeComponent,
-    SearchComponent,
+    SearchInputComponent,
     InputTextComponent,
     SwitchMenuComponent,
     CardComponent,

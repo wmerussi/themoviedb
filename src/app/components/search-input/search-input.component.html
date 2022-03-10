@@ -1,13 +1,16 @@
-<form class="search">
+<div class="search">
   <div class="search__input">
     <app-input-text
       fieldClass="search__input-field"
       icon="magnifying-glass"
+      (onKeyup)="onKeyup($event)"
     ></app-input-text>
   </div>
 
   <button
     class="search__button button button--primary"
-    type="submit"
-  >Search</button>
-</form>
+    type="button"
+    (click)="emitSearchValue()"
+  >Search
+  </button>
+</div>
