@@ -1,0 +1,27 @@
+<div class="movie-details">
+  <div class="container">
+    <div class="movie-details__row row">
+      <button
+        class="movie-details__close"
+        type="button"
+        (click)="onClose()"
+      ></button>
+
+      <img
+        src="{{ getPosterUrl(details.poster_path) }}"
+        alt="Movie poster"
+      >
+
+      <div class="movie-details__text-content">
+        <h2 class="col">{{ details.title }}</h2>
+
+        <div class="movie-details__subtitle">
+          <span class="movie-details__date col">{{ details.release_date }}</span>
+          <span class="movie-details__genres col">{{ getGenres(details.genres) }}</span>
+        </div>
+
+        <p class="col">{{ details.overview }}</p>
+      </div>
+    </div>
+  </div>
+</div>

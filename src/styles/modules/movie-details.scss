@@ -1,0 +1,141 @@
+.movie-details {
+  @include font-size(small, tall);
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: {
+    top: space(xlarge);
+    bottom: space(xlarge);
+  };
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: color(dark, dark);
+  overflow: scroll;
+
+  &__date,
+  &__genres {
+    color: color(light, dark);
+  }
+
+  &__subtitle {
+    margin-bottom: space(large);
+  }
+
+  &__date {
+    margin-bottom: space(small);
+  }
+
+  &__close {
+    position: absolute;
+    top: space(large);
+    right: space(large);
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &::before {
+      @include border-radius(circle);
+
+      width: 32px;
+      height: 32px;
+      background-color: color(dark, light);
+
+      content: "";
+    }
+
+    &::after {
+      @include font-size(medium);
+
+      display: inline-block;
+      color: color(light, light);
+      content: "\00d7";
+    }
+  }
+
+  img {
+    @include border-radius(round);
+
+    margin: 0 auto space(large);
+    width: 136px;
+    height: 180px;
+    border: 1px solid color(dark, medium);
+  }
+
+  h2 {
+    @include font-family(bebas);
+    @include font-size(medium);
+
+    margin-bottom: space(xsmall);
+  }
+
+  @include media(medium) {
+    padding: {
+      top: space(xxlarge);
+      bottom: space(xxlarge);
+    };
+
+    &__date,
+    &__genres {
+      @include font-size(base, thin);
+
+      display: inline-block;
+      width: auto;
+    }
+
+    &__date {
+      &::after {
+        display: inline-block;
+        margin-left: space(base);
+        content: "\2022";
+      }
+    }
+
+    img {
+      width: 348px;
+      height: 463px;
+    }
+
+    h2 {
+      @include font-size(huge);
+    }
+
+    p {
+      @include font-size(base, tall);
+    }
+  }
+
+  @include media(large) {
+    padding: {
+      top: space(xxhuge);
+      bottom: space(xxhuge);
+    };
+
+    &__row {
+      flex-wrap: nowrap;
+    }
+
+    &__subtitle {
+      margin-bottom: space(xxlarge);
+    }
+
+    img {
+      margin-right: space(large);
+      width: 316px;
+      height: 421px;
+    }
+
+    h2 {
+      margin-top: space(xxhuge);
+    }
+  }
+}

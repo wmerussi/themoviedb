@@ -2,6 +2,8 @@
   <div
     *ngFor="let movie of movieList"
     class="movie-list__card col col-md-3"
+    role="button"
+    (click)="onCardClick(movie.id)"
   >
     <app-card
       [date]="movie.release_date"

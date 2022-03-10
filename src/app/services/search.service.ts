@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { QueryResult } from '../interfaces/query-result.interface';
+import { Movie } from '../interfaces/movie.interface';
 import { getIsoDate, kebabToCamelCase } from './utils';
 
 @Injectable({providedIn: 'root'})
@@ -11,6 +12,10 @@ export class SearchService {
   private url = 'https://api.themoviedb.org/3';
 
   constructor(private http: HttpClient) { }
+
+  getMovie(id: number): Observable<Movie> {
+    return this.http.get<Movie>(`${this.url}/movie/${id}`);
+  }
 
   search(value: string): Observable<QueryResult> {
     const params = new HttpParams()

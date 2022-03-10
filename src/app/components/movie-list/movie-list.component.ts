@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Movie } from '../../interfaces/movie.interface';
 
 @Component({
@@ -8,6 +8,7 @@ import { Movie } from '../../interfaces/movie.interface';
 })
 export class MovieListComponent {
   @Input() movieList: Movie[] = [];
+  @Output() cardClick: EventEmitter<number> = new EventEmitter<number>();
 
   getPosterUrl(posterFileName: string): string {
     return `https://image.tmdb.org/t/p/w200${posterFileName}`;
@@ -15,5 +16,9 @@ export class MovieListComponent {
 
   getMovieRating(voteAverage: number): number {
     return voteAverage * 10;
+  }
+
+  onCardClick(id: number): void {
+    this.cardClick.emit(id);
   }
 }

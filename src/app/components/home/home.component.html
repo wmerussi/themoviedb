@@ -46,6 +46,13 @@
   <div class="container">
     <app-movie-list
       [movieList]="movieList"
+      (cardClick)="getMovieDetails($event)"
     ></app-movie-list>
   </div>
 </div>
+
+<app-movie-details
+  *ngIf="showDetails"
+  [details]="movieDetails"
+  (close)="closeModal()"
+></app-movie-details>

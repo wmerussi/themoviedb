@@ -21,6 +21,7 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { DebounceKeyupDirective } from './directives/debounce-keyup.directive';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AtEndOfThePageDirective } from './directives/at-end-of-page.directive';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AtEndOfThePageDirective } from './directives/at-end-of-page.directive';
     DebounceKeyupDirective,
     NotFoundComponent,
     AtEndOfThePageDirective,
+    MovieDetailsComponent,
   ],
   imports: [
     AngularSvgIconModule.forRoot(),

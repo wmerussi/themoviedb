@@ -1,6 +1,7 @@
 $border-corners: (
   round: 5,
   pill: 24,
+  circle: 50,
 );
 
 @function border-radius($type) {

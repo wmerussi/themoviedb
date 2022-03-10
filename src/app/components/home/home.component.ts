@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   lastParams: SearchParams = {type: '', query: ''};
   subscriptions: Subscription = new Subscription();
 
+  showDetails: boolean = false;
+  movieDetails: Movie = <Movie>{};
+
   constructor(private route: ActivatedRoute, private router: Router, private searchService: SearchService) { }
 
   get subtitle(): string {
@@ -89,6 +92,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   atEndOfThePage(_this: any): void {
     _this.fillMovies();
+  }
+
+  getMovieDetails(id: number): void {
+    this.searchService.getMovie(id).subscribe((movie: Movie) => {
+      this.movieDetails = movie;
+      console.log(this.movieDetails);
+      this.showDetails = true;
+    });
+  }
+
+  closeModal() {
+    this.showDetails = false;
   }
 
   private resetValues(): void {
