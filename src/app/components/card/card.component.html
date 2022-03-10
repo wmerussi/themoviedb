@@ -1,7 +1,7 @@
 <div class="card">
   <img
-    [lazyLoad]="src"
-    (error)="loadAltImage()"
+    defaultImage="assets/images/cover.jpg"
+    [lazyLoad]="imageSrc"
     alt="Image of the movie's folder"
   >
 
