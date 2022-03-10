@@ -1,0 +1,33 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  span {
+    @include font-family(bebas);
+    @include font-size(large);
+
+    color: color(dark, lighter);
+  }
+
+  button {
+    @include font-size(small, thin);
+    @include border-radius(round);
+
+    margin-top: space(base);
+  }
+
+  @include media(medium) {
+    span {
+      @include font-size(huge);
+    }
+
+    button {
+      @include font-size(base, thin);
+    }
+  }
+}
